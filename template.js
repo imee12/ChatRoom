@@ -26,6 +26,15 @@ template.roomTmpl = [
 
 ].join("");
 
+template.roomTmpl2 = [
+"div class= 'chatbox'>",
+'<h3> <%= name %></h3>',
+"<article class= 'message'>",
+"<p><%= message %>",
+"</article>",
+
+].join("");
+
 
 template.sideBar = [
 "<h3><%= name %></h3>",

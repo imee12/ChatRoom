@@ -16,3 +16,20 @@ template.userTmpl = [
   "</article>"
 
 ].join("");
+
+template.roomTmpl = [
+"div class= 'chatbox'>",
+'<h3> <%= name %></h3>',
+"<article class= 'message'>",
+"<p><%= message %>",
+"</article>",
+
+].join("");
+
+
+template.sideBar = [
+"<h3><%= name %></h3>",
+"<article class='activeuser'>",
+"<p><%= activeuser %>"
+
+].join("");

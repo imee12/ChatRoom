@@ -6,50 +6,48 @@ $(document).ready(function () {
 var foodies = {
 
   init: function() {
-    foodies.initStyling();
+  //  foodies.initStyling();
 
     foodies.initSignup();
     //foodies.initEvents();
   },
 
-  initStyling: function(){
+//  initStyling: function(){
   // sidebar displaying users sideBarStyle function
-},
+//},
 
 
   //This will log user in
 
-initSignup: function () {
-$('.signup').on('click', function(event) {
+  initSignup: function () {
+    $('.signup').on('click', function(event) {
     event.preventDefault();
     console.log('signup button works');
-    // pushing ssn to users array
+    console.log($(this).siblings('input[name="username"]').val());
+  //  pushing ssn to users array
     var newuser = {
 
-      username: $(this).find('input[name="name"]').val(),
-      SSN: ('default').val(),
-      msg: ('default').val(),
-      status: ('loggedin').val(),
+      username: $(this).siblings('input[name="username"]').val(),
+      //SSN: $("default").val(),
+      //msg: $("default").val(),
+      status: "loggedin",
+      next:
     };
     // print message saying hello to user in the header
-  //  var username=$('input:text').val();
-  //  $("header").append('<h2> WELCOME '  + username  +  '! //</h2>');
+    var username=$('input:text').val();
+    $("header").append('<h2> WELCOME '  + username  +  '! </h2>');
+    console.log(newuser);
 
-
-    foodies.signup();
+    foodies.signup(newuser);
 
 
 
 // LATER PUT BUTTON TO EDIT NAME
-
-
-
-
-};
-
+});
 
 },
-};
+
+
 // initEvents: function () {
 //
 //
@@ -99,19 +97,24 @@ $('.signup').on('click', function(event) {
 
 signup: function (newuser) {
   $.ajax({
-    url:'http://tiy-fee-rest.herokuapp.com/collections/foodies' + '-' + users,
-    data: index,
+    url:'http://tiy-fee-rest.herokuapp.com/collections/foodies' + '-' + 'users',
+    data: newuser,
     type: 'POST',
     success: function (data) {
-      _.each(data, function(item, index, array){
-      console.log(index);
-      var SSN = $(index).val();
-    })
 
-  });
+      console.log(data);
 
-//  $.ajax({
-  //  url: foodies.config.url + '-' + SSN,
+  // foodies.getSSN();
+
+  }
+
+});
+},
+
+
+}
+// //  $.ajax({
+//   //  url: foodies.config.url + '-' + SSN,
   //  type: 'POST',
   //  success: function (data) {
 

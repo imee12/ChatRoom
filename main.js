@@ -9,7 +9,7 @@ var foodies = {
     foodies.initStyling();
 
     foodies.initSignup();
-    foodies.initEvents();
+  //  foodies.initEvents();
   },
 
   initStyling: function(){
@@ -26,18 +26,17 @@ $('.signup').on('click', function(event) {
     // pushing ssn to users array
     var newuser = {
 
-      username: $(this).find('input[name="name"]').val(),
-      SSN: ('default').val(),
-      msg: ('default').val(),
-      status: ('loggedin').val(),
+      username: $(this).siblings('input[name="username"]').val(),
+
+      status: "loggedin",
     };
 //print message saying hello to user in the header
 
    var username=$('input:text').val();
-   $("header").append('<h2> WELCOME '  + username  +  '! //</h2>');
+   $("header").append('<h2> WELCOME '  + username  +  '! </h2>');
+console.log(newuser);
 
-
-    foodies.signup();
+    foodies.signup(newuser);
 
 
 
@@ -49,63 +48,63 @@ $('.signup').on('click', function(event) {
 });
 
 },
-};
-initEvents: function () {
 
-
-//when room1 button pressed user will go to room1
-  $('room1').on('click', function(event){
-    event.preventDefault();
-    //hide loginform
-    $(".form-group").hide();
-    foodies.room1();
-
-    //the sidebar for room1 will show up
-    foodies.sideBar1();
-
-  });
+// initEvents: function () {
+//
+//
+// //when room1 button pressed user will go to room1
+//   $('room1').on('click', function(event){
+//     event.preventDefault();
+//     //hide loginform
+//     $(".form-group").hide();
+//     foodies.room1();
+//
+//     //the sidebar for room1 will show up
+//     foodies.sideBar1();
+//
+//   });
 
 //in room1 user can post a message
 
-  $('.submit').on('click', function (){
-    event.preventDefault();
+//   $('.submit').on('click', function (){
+//     event.preventDefault();
+//
+//     var newmsg = {
+//       //data-txid="<%= _id %>"
+//       username: $(username).val();
+//       SSN: $(SSN).value();
+//       msg:  $(this).find('input[name="message"]').value();
+//       status: ('room1').value();
+//     };
+//
+//
+//     foodies.messageroom1();
+//
+//
+//   });
+//
+//
+//
+// },
 
-    var newmsg = {
-      //data-txid="<%= _id %>"
-      username: $(username).val();
-      SSN: $(SSN).value();
-      msg:  $(this).find('input[name="message"]').value();
-      status: ('room1').value();
-    };
-
-
-    foodies.messageroom1();
-
-
-  });
-
-
-
-},
-
-config: {
-  url: 'http://tiy-fee-rest.herokuapp.com/collections/foodies',
-
-
-},
+// config: {
+//   url: 'http://tiy-fee-rest.herokuapp.com/collections/foodies',
+//
+//
+// },
 
 
 // for signing up a new user
 
 signup: function (newuser) {
   $.ajax({
-    url:'http://tiy-fee-rest.herokuapp.com/collections/foodies' + '-' + users,
-    data: index,
+    url:'http://tiy-fee-rest.herokuapp.com/collections/foodies' + '-' + 'users',
+    data: newuser,
     type: 'POST',
     success: function (data) {
       _.each(data, function(item, index, array){
-      console.log(index);
-      var SSN = $(index).val();
+      console.log(data);
+
   });
 
   }
@@ -113,20 +112,20 @@ signup: function (newuser) {
   });
 },
 
-}
+};
 
- $.ajax({
-   url: foodies.config.url + '-' + SSN,
-   type: 'POST',
-   success: function (data) {
-
-
-   }
-
- })
-
-
-}
+//  $.ajax({
+//    url: foodies.config.url + '-' + SSN,
+//    type: 'POST',
+//    success: function (data) {
+//
+//
+//    }
+//
+//  })
+//
+//
+// }
 
 
 

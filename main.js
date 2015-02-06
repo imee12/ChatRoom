@@ -108,7 +108,12 @@ signup: function (newuser) {
       var SSN = $(index).val();
   });
 
+  }
+
   });
+},
+
+}
 
  $.ajax({
    url: foodies.config.url + '-' + SSN,

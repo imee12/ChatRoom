@@ -20,18 +20,27 @@ var foodies = {
   //This will log user in
 
 initLogin: function () {
-$('login').on('click', function(event) {
+$('signup').on('click', function(event) {
     event.preventDefault();
+    // pushing ssn to users array
+    var newuser = {
+      //data-txid="<%= _id %>"
+      username: $(this).find('input[name="name"]').val();
+      SSN: ('default').value();
+      msg: ('default').value();
+      status: ('loggedin').value();
+    };
 
+foodies.signup();
   // print message saying hello to user in the header
 
 var username=$('input:text').val();
 $("header").append('<h2> WELCOME '  + username  +  '! </h2>');
-
+// LATER PUT BUTTON TO EDIT NAME
 });
 
     console.log("pressed login");
-    foodies.login();
+
 },
 
 
@@ -46,13 +55,28 @@ initEvents: function () {
     foodies.room1();
 
     //the sidebar for room1 will show up
-    //foodies.sideBar1();
+    foodies.sideBar1();
 
   });
 
 //in room1 user can post a message
 
-  $('.submit').on('click', function ())
+  $('.submit').on('click', function (){
+    event.preventDefault();
+
+    var newmsg = {
+      //data-txid="<%= _id %>"
+      username: $(username).val();
+      SSN: $(SSN).value();
+      msg:  $(this).find('input[name="message"]').value();
+      status: ('room1').value();
+    };
+
+    
+    foodies.messageroom1();
+
+
+  });
 
 
 
@@ -65,7 +89,36 @@ config: {
 },
 
 
-/// i don't think we need this if we don't need to track user's message data//
+// for signing up a new user
+
+signup: function (newuser) {
+  $.ajax({
+    url: foodies.config.url + '-' + users,
+    data: index,
+    type: 'POST',
+    success: function (data) {
+      _.each(data, function(item, index, array){
+      console.log(index);
+      var SSN = $(index).val();
+    })
+
+  });
+
+//  $.ajax({
+  //  url: foodies.config.url + '-' + SSN,
+  //  type: 'POST',
+  //  success: function (data) {
+
+
+  //  }
+
+//  })
+
+
+//}
+
+
+
 
 login: function (username) {
   $.ajax({
@@ -88,7 +141,7 @@ login: function (username) {
 
 room1: function (){
   //this will make room 1 data appear using template ajax getdata
-  $(.ajax)({
+  $.ajax({
       url: foodies.config.url + '-room1',
       //data:
       type: 'GET',
@@ -108,18 +161,34 @@ room1: function (){
 }
 
 messageRoom1: function () {
-  //this will post user message
+  //this will post user message to room 1
 
   $(.ajax)({
       url: foodies.config.url + '-room1',
       data: message,
       type: 'POST',
-      success: function (message)
+      success: function (message) {
+
+  })
+
+/// need to post message to user's data
+},
+
+messageRoom2: function () {
+  //this will post user message
+
+  $(.ajax)({
+      url: foodies.config.url + '-room2',
+      data: message,
+      type: 'POST',
+      success: function (message) {
 
   })
 
 
 },
+
+
 
 sideBar1: function (){
     $(.ajax) {
@@ -140,8 +209,23 @@ sideBar1: function (){
 
 
 
-}
-///sideBar1
+
+///sideBar2
+sideBar2: function (){
+    $(.ajax) {
+      url: foodies.config.url + '-room2',
+      data: users,
+      type: 'GET',
+      success: function (){
+
+
+      },
+
+      error: function (error) {
+        console.log("error");
+      }
+
+    },
 
 
 

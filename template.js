@@ -1,6 +1,8 @@
 var template = [];
 
 template.userTmpl = [
+//we make
+
 "<div class= 'userBox'>",
 '<article data-userid="<%= _id %>">',
   '<h3> <%= name %></h3>',
@@ -16,6 +18,10 @@ template.userTmpl = [
   "</article>"
 
 ].join("");
+///each message needs a delete button so user can delete own messages
+//we need to be able to grab id of message so can be deleted
+
+//also need to add status value of room so we can track which room people are in in our sidebar
 
 template.roomTmpl = [
 "div class= 'chatbox'>",

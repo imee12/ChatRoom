@@ -6,125 +6,127 @@ $(document).ready(function () {
 var foodies = {
 
   init: function() {
-  //  foodies.initStyling();
+    foodies.initStyling();
 
     foodies.initSignup();
-    //foodies.initEvents();
+    foodies.initEvents();
   },
 
-//  initStyling: function(){
-  // sidebar displaying users sideBarStyle function
-//},
+  initStyling: function(){
+  //sidebar displaying users sideBarStyle function
+},
 
 
   //This will log user in
 
-  initSignup: function () {
-    $('.signup').on('click', function(event) {
+initSignup: function (){
+$('.signup').on('click', function(event) {
     event.preventDefault();
     console.log('signup button works');
-    console.log($(this).siblings('input[name="username"]').val());
-  //  pushing ssn to users array
+    // pushing ssn to users array
     var newuser = {
 
-      username: $(this).siblings('input[name="username"]').val(),
-      //SSN: $("default").val(),
-      //msg: $("default").val(),
-      status: "loggedin",
-      next:
+      username: $(this).find('input[name="name"]').val(),
+      SSN: ('default').val(),
+      msg: ('default').val(),
+      status: ('loggedin').val(),
     };
-    // print message saying hello to user in the header
-    var username=$('input:text').val();
-    $("header").append('<h2> WELCOME '  + username  +  '! </h2>');
-    console.log(newuser);
+//print message saying hello to user in the header
 
-    foodies.signup(newuser);
+   var username=$('input:text').val();
+   $("header").append('<h2> WELCOME '  + username  +  '! //</h2>');
+
+
+    foodies.signup();
 
 
 
 // LATER PUT BUTTON TO EDIT NAME
+
+
+
+
 });
 
 },
+};
+initEvents: function () {
 
 
-// initEvents: function () {
-//
-//
-// //when room1 button pressed user will go to room1
-//   $('room1').on('click', function(event){
-//     event.preventDefault();
-//     //hide loginform
-//     $(".form-group").hide();
-//     foodies.room1();
-//
-//     //the sidebar for room1 will show up
-//     foodies.sideBar1();
-//
-//   });
-//
-// //in room1 user can post a message
-//
-//   $('.submit').on('click', function (){
-//     event.preventDefault();
-//
-//     var newmsg = {
-//       //data-txid="<%= _id %>"
-//       username: $(username).val();
-//       SSN: $(SSN).value();
-//       msg:  $(this).find('input[name="message"]').value();
-//       status: ('room1').value();
-//     };
-//
-//
-//     foodies.messageroom1();
-//
-//
-//   });
-//
-//
-//
-// },
+//when room1 button pressed user will go to room1
+  $('room1').on('click', function(event){
+    event.preventDefault();
+    //hide loginform
+    $(".form-group").hide();
+    foodies.room1();
 
-//config: {
-  //url: 'http://tiy-fee-rest.herokuapp.com/collections/foodies',
+    //the sidebar for room1 will show up
+    foodies.sideBar1();
+
+  });
+
+//in room1 user can post a message
+
+  $('.submit').on('click', function (){
+    event.preventDefault();
+
+    var newmsg = {
+      //data-txid="<%= _id %>"
+      username: $(username).val();
+      SSN: $(SSN).value();
+      msg:  $(this).find('input[name="message"]').value();
+      status: ('room1').value();
+    };
 
 
-//},
+    foodies.messageroom1();
+
+
+  });
+
+
+
+},
+
+config: {
+  url: 'http://tiy-fee-rest.herokuapp.com/collections/foodies',
+
+
+},
 
 
 // for signing up a new user
 
 signup: function (newuser) {
   $.ajax({
-    url:'http://tiy-fee-rest.herokuapp.com/collections/foodies' + '-' + 'users',
-    data: newuser,
+    url:'http://tiy-fee-rest.herokuapp.com/collections/foodies' + '-' + users,
+    data: index,
     type: 'POST',
     success: function (data) {
-
-      console.log(data);
-
-  // foodies.getSSN();
+      _.each(data, function(item, index, array){
+      console.log(index);
+      var SSN = $(index).val();
+  });
 
   }
 
-});
+  });
 },
+
+}
+
+ $.ajax({
+   url: foodies.config.url + '-' + SSN,
+   type: 'POST',
+   success: function (data) {
+
+
+   }
+
+ })
 
 
 }
-// //  $.ajax({
-//   //  url: foodies.config.url + '-' + SSN,
-  //  type: 'POST',
-  //  success: function (data) {
-
-
-  //  }
-
-//  })
-
-
-//}
 
 
 

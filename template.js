@@ -21,7 +21,8 @@ template.roomTmpl = [
 "div class= 'chatbox'>",
 '<h3> <%= name %></h3>',
 "<article class= 'message'>",
-"<p><%= message %>",
+"<p><%= message %>" | "<button class='deleterm1'>Delete</button>",
+"<button class='submitrm1'>Submit</button>",
 "</article>",
 
 ].join("");
@@ -31,6 +32,7 @@ template.roomTmpl2 = [
 '<h3> <%= name %></h3>',
 "<article class= 'message'>",
 "<p><%= message %>",
+"<button class='submitrm2'>Submit</button>",
 "</article>",
 
 ].join("");

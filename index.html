@@ -4,58 +4,95 @@
   <meta charset="UTF-8">
   <title>Document</title>
   <link rel="stylesheet" href="styles.css">
-
 </head>
+
 <body>
-  <header>
-    <h1>CHAT ROOM</h1>
+    <div class ="username">
+        <h2> Welcome </h2>
+    </div>
 
-  </header>
-  <section>
-    <form id="createThing" action="">
-           <div class="form">
-             <input type="text" class="form-control" name="username" placeholder="username" value="">
-             <button class="login">Login</button>
-             <button class="signup">Sign Up</button>
-           </div>
+    <header>
+        <div class= "loginscreen">
+               <div class="chomp"><img src="images/chompchat.png">
+               </div>
+        </div>
 
-    <article>
-         <h3>User Name</h3>
-         <p>Synopsis Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem corporis autem dolorum debitis obcaecati laboriosam perspiciatis expedita ea consequatur cupiditate eos fugit voluptatem provident repellat omnis commodi dolorem, fugiat suscipit.</p>
-   </article>
-  <aside>
+   </header>
 
-
-
-    <aside>
-
-       <div class= "Home">
-           <button type "submit" class="btn btn-primary">Home</button>
-       </div>
+    <div class="loginbox">
+         <form id="logsign" action="">
+            <div class="form">
+             <input type="text" class="form-control" name="username" placeholder="Enter your name" value="">
+             <button class="signup">Login</button>
+        </form>
+            </div>
+    </div>
 
 
-       <div class="form-group">
-         <textarea name="Message" class="form-control" id="" cols="30" rows="10"></textarea>
-       </div>
-       <button type="submit" class="btn btn-primary">Send</button>
-       <button type="submit" class="btn btn-primary">Delete</button>
-   </aside>
+    <div class= "chatrooms">
+        <button type="submit" class="enterroom">Join Room</button>
+    </div>
 
-  </section>
 
-  <section>
-      <div class= "chatrooms">
-          <button type="submit" class="btn btn-primary">Recipes</button>
-          <button type="submit" class="btn btn-primary">Food Porn</button>
-     </div>
+    <div class="header2">
+        <div class="chomp2"><img src="images/chompchat.png">
+        </div>
+    </div>
+
+        <button type "submit" class="home">Home</button>
 
 
 
-  <section>
-      <div class ="sidebar">
-          <input type="text" class="form-control" name="activeuser">
-      </div>
-  </section>
+
+
+<div class="room1">
+    <div class="chatbox">
+    </div>
+    <div class="msgbox">
+        <form id="createMsg" action="">
+            <div class="form">
+                <input type="text" class="type" placeholder="Type Your Message" name= "newmsg" value="">
+                <button type="submit" class="send">Send</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+
+
+    <div class="foods">
+            <ul class="firstgroup">
+                <li><a href="#"><img id="yum" src="images/burger.png"></a></li>
+                <li><a href="#"><img id="yum" src="images/cherry.png"></a></li>
+                <li><a href="#"><img id="yum" src="images/bellpepper.png"></a></li>
+                <li><a href="#"><img id="yum" src="images/buritto.png"></a></li>
+                <li><a href="#"><img id="yum" src="images/strawberries.png"></a></li>
+            </ul>
+
+        <div class="secondgroup">
+            <ul>
+                <li><a href= "#"><img id="yum2" src="images/banana.png"></a></li>
+                <li><a href="#"><img id="yum2" src="images/carrot.png"></a></li>
+                <li><a href= "#"><img id="yum2" src="images/fries.png"></a></li>
+                <li><a href= "#"><img id="yum2" src="images/orange.png"></a></li>
+                <li><a href="#"><img id="yum2" src="images/bread.png"></a></li>
+            </ul>
+        </div>
+
+        <div class="thirdgroup">
+            <ul>
+                <li><img id="yum3" src="images/apple.png"></li>
+                <li><img id="yum3" src="images/greenbeans.png"></li>
+                <li><img id="yum3" src="images/sandwich.png"></li>
+                <li><img id="yum3" src="images/tomato.png"></li>
+                <li><img id="yum3" src="images/pizza.png"></li>
+            </ul>
+        </div>
+
+    </div>
+
+
 
   <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/underscore/underscore.js"></script>

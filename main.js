@@ -1,246 +1,229 @@
 $(document).ready(function () {
+
   foodies.init();
 
 });
 
-var foodies = {
 
-  init: function() {
-    foodies.initStyling();
+$(document).ready(function () {
+    foodies.init();
+    setInterval(function() {
+        //       console.log("hi everyone!");
+        //       var screenTmpl = _.template(template.foodpix);
+        //       var markup = "";
+        //     _.each(foodpics, function (currentItem, index, array){
+        //       markup+= screenTmpl(currentItem);
+        //       console.log(currentItem);
+        //     });
+        //   $(".homescreen").html(markup);
+        // console.log(markup);
+        //
 
-    foodies.initSignup();
-    foodies.initEvents();
-  },
-
-  initStyling: function(){
-  //sidebar displaying users sideBarStyle function
-},
-
-
-  //This will log user in
-
-initSignup: function (){
-$('.signup').on('click', function(event) {
-    event.preventDefault();
-    console.log('signup button works');
-    // pushing ssn to users array
-    var newuser = {
-
-      username: $(this).find('input[name="name"]').val(),
-      SSN: ('default').val(),
-      msg: ('default').val(),
-      status: ('loggedin').val(),
-    };
-//print message saying hello to user in the header
-
-   var username=$('input:text').val();
-   $("header").append('<h2> WELCOME '  + username  +  '! //</h2>');
-
-
-    foodies.signup();
-
-
-
-// LATER PUT BUTTON TO EDIT NAME
-
-
-
-
+    }, 5000);
 });
 
-},
+
+
+
+var foodies = {
+
+    init: function() {
+        foodies.initStyling();
+        foodies.initSignup();
+
+        foodies.initEvents();
+    },
+
+    initStyling: function(){
+
+    },
+
+
+
+    ///////////  THIS SIGNS UP NEW USER //////////
+    initSignup: function () {
+        $('.signup').on('click', function(event) {
+            event.preventDefault();
+            console.log('signup button works');
+
+            var newuser = {
+
+                username: $(this).siblings('input[name="username"]').val(),
+
+                status: "loggedin",
+            };
+            /////////PRINTS MESSAGE TO USER IN HEADER
+
+            var username=$('input:text').val();
+            $(".username").append(username  +  '!' );
+            console.log(newuser);
+            localStorage.username = $('input:text').val();
+
+
+            foodies.signup(newuser);
+
+        });
+    },
+    initEvents: function (){
+
+
+        ////////NOW ENTERING CHOMP CHAT ///////////
+        $(".enterroom").on('click', function (event) {
+            console.log("enterroom works");
+
+            $(".room1").show();
+            $(".chatbox").show();
+            $(".msgbox").show();
+            $(".enterroom").hide()
+            $(".loginscreen").hide();
+
+            foodies.renderRoom();
+
+        });
+
+        ////////SENDING A MESSAGE IN CHOMP CHAT////////
+
+        $(".send").on('click', function (event){
+            event.preventDefault();
+            console.log("sendmessage button works");
+
+
+
+            var newMsg = {
+                username: (localStorage.username),
+                msg: $('input[name=newmsg]').val(),
+
+            };
+            $("#createMsg")[0].reset();
+            foodies.sendmsg(newMsg);
+
+        });
+
+        ///////////THIS WILL DELETE A MESSAGE IN CHOMP CHAT/////////
+        $(".room1").on('click', '.deletemsgx', function (event) {
+            event.preventDefault();
+            console.log("delete message button works");
+            var msgid = $(this).closest('article').data('msgid');
+            console.log(msgid);
+            foodies.deletemsg(msgid);
+        });
+    },
+
+    signup: function (newuser) {
+        $.ajax({
+            url:'http://tiy-fee-rest.herokuapp.com/collections/foodies' + '-' + 'users',
+            data: newuser,
+            type: 'POST',
+            success: function (data) {
+                console.log(data);
+
+                $(".loginbox").hide();
+                $(".username").show();
+                $(".chatrooms").show();
+
+            }
+
+        });
+    },
+
+    // login: function (newuser) {
+    //   $.ajax({
+    //     url:'http://tiy-fee-rest.herokuapp.com/collections/foodies' + '-' + 'users',
+    //     data: olduser,
+    //     type: 'GET',
+    //     success: function (data) {
+    //       console.log(data);
+    //
+    //       _.each(data, function (item, index, array) {
+    //
+    //       if(username==="item.username"){
+    //     console.log("I got the username");
+    //   } else if (username !="item.username") {
+    //     console.log("Nope. not working.");
+    //     };
+    //     },
+    //     error: function (err) {
+    //       console.log(err);
+    //     }
+    //     });
+    //
+    //
+    //
+    //
+    //       $(".loginbox").hide();
+    //       $(".username").show();
+    //       $(".roombutton").show();
+    //   }
+    //
+    //   });
+    // },
+
+
+
+    sendmsg: function (msg) {
+        $.ajax ({
+            url:'http://tiy-fee-rest.herokuapp.com/collections/foodies' + '-' + 'room3',
+            data: msg,
+            type: "POST",
+            success: function (data) {
+                console.log(msg);
+
+
+                foodies.renderRoom();
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    },
+
+
+
+
+    renderRoom: function () {
+        $.ajax ({
+            url:'http://tiy-fee-rest.herokuapp.com/collections/foodies' + '-' + 'room3',
+            //data: msg,
+            type: 'GET',
+            success: function (msg) {
+                var roomTemplate = _.template(template.room1);
+                var markup= "";
+                _.each(msg, function (item, index, array) {
+
+                    markup +=roomTemplate(item);
+                });
+                console.log('markup is ...');
+                $('.chatbox').html(markup);
+            },
+            error: function (error) {
+                console.log("error");
+            }
+        });
+    },
+
+
+    deletemsg: function (id) {
+
+        $.ajax({
+            url:'http://tiy-fee-rest.herokuapp.com/collections/foodies' + '-' + 'room3/' + id,
+            type: 'DELETE',
+            success: function (data) {
+                console.log(data);
+                foodies.renderRoom();
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    },
+
+
+
+
+
+
+
+
+
+
 };
-initEvents: function () {
-
-
-//when room1 button pressed user will go to room1
-  $('room1').on('click', function(event){
-    event.preventDefault();
-    //hide loginform
-    $(".form-group").hide();
-    foodies.room1();
-
-    //the sidebar for room1 will show up
-    foodies.sideBar1();
-
-  });
-
-//in room1 user can post a message
-
-  $('.submit').on('click', function (){
-    event.preventDefault();
-
-    var newmsg = {
-      //data-txid="<%= _id %>"
-      username: $(username).val();
-      SSN: $(SSN).value();
-      msg:  $(this).find('input[name="message"]').value();
-      status: ('room1').value();
-    };
-
-
-    foodies.messageroom1();
-
-
-  });
-
-
-
-},
-
-config: {
-  url: 'http://tiy-fee-rest.herokuapp.com/collections/foodies',
-
-
-},
-
-
-// for signing up a new user
-
-signup: function (newuser) {
-  $.ajax({
-    url:'http://tiy-fee-rest.herokuapp.com/collections/foodies' + '-' + users,
-    data: index,
-    type: 'POST',
-    success: function (data) {
-      _.each(data, function(item, index, array){
-      console.log(index);
-      var SSN = $(index).val();
-  });
-
-  }
-
-  });
-},
-
-}
-
- $.ajax({
-   url: foodies.config.url + '-' + SSN,
-   type: 'POST',
-   success: function (data) {
-
-
-   }
-
- })
-
-
-}
-
-
-
-
-// login: function (username) {
-//   $.ajax({
-//     url: foodies.config.url + '-' + username,
-//     data: username,
-//     type: 'POST',
-//     success: function (data) {
-//       console.log(data);
-//
-//
-//     },
-//     error: function (error) {
-//       console.log(error);
-//     }
-//
-//   });
-//
-//
-// },
-
-// room1: function (){
-//   //this will make room 1 data appear using template ajax getdata
-//   $.ajax({
-//       url: foodies.config.url + '-room1',
-//       //data:
-//       type: 'GET',
-//       success: function (data) {
-//         console.log(data);
-//         //if you want to type message in room1
-//
-//
-//
-//       },
-//       error: function (error) {
-//         console.log("error");
-//       }
-//
-//   })
-//
-// }
-//
-// messageRoom1: function () {
-//   //this will post user message to room 1
-//
-//   $(.ajax)({
-//       url: foodies.config.url + '-room1',
-//       data: message,
-//       type: 'POST',
-//       success: function (message) {
-// }
-//   })
-//
-// /// need to post message to user's data
-// },
-//
-// // messageRoom2: function () {
-// //   //this will post user message
-//
-//   $(.ajax)({
-//       url: foodies.config.url + '-room2',
-//       data: message,
-//       type: 'POST',
-//       success: function (message) {
-//       },
-//   })
-//
-//
-// },
-//
-//
-
-// //sideBar1: function (){
-// //    $(.ajax) {
-// //      url: foodies.config.url + '-room1',
-//   //    data: users,
-//     //  type: 'GET',
-//       success: function (){
-//
-//
-//       },
-//
-//       error: function (error) {
-//         console.log("error");
-//       }
-//
-//     },
-//
-// },
-
-
-
-///sideBar2
-//sideBar2: function (){
-  //  $(.ajax) {
-  ////    url: foodies.config.url + '-room2',
-    //  data: users,
-      //type: 'GET',
-    //  success: function (){
-
-
-  //    },
-
-  //    error: function (error) {
-      //  console.log("error");
-//      }
-
-  //  },
-
-
-
-
-////room2
-
-//}

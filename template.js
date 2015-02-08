@@ -1,44 +1,19 @@
 var template = [];
 
-template.userTmpl = [
-"<div class= 'userBox'>",
-'<article data-userid="<%= _id %>">',
-  '<h3> <%= name %></h3>',
-  "<button class='completed'>Send</button>",
-//  "<button class='edit'>Edit?</button>",
-  "<button class='delete'>Delete</button>",
-  //"<form class='editBook' action=''>",
-    //    "<div class='form-group'>",
-      //    "<input type='text' class='form-control' name='editTitle' value='<%= title %>'>",
-      //  "</div>",
-        "</div>",
-
-  "</article>"
-
-].join("");
-
-template.roomTmpl = [
-"div class= 'chatbox'>",
-'<h3> <%= name %></h3>',
-"<article class= 'message'>",
-"<p><%= message %>",
-"</article>",
-
-].join("");
-
-template.roomTmpl2 = [
-"div class= 'chatbox'>",
-'<h3> <%= name %></h3>',
-"<article class= 'message'>",
-"<p><%= message %>",
-"</article>",
+template.room1 = [
+"<div class= 'room1'>",
+'<article data-msgid="<%= _id %>">',
+'<h4> <%= username %></h4>',
+'<p> <%= msg %></p>',
+"<button class='deletemsgx'>Delete?</button>",
+"</article>"
 
 ].join("");
 
 
-template.sideBar = [
-"<h3><%= name %></h3>",
-"<article class='activeuser'>",
-"<p><%= activeuser %>"
+template.foodpix = [
+"div class='fodpix'>",
+"<img src='<%= img %>'>",
+"</div>"
 
 ].join("");

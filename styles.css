@@ -6,11 +6,15 @@ body {
 
 .username {
     display: none;
+    color: #8C191C;
+    font-size: 18px;
+    text-align: center;
 }
 .chatbox {
     display: none;
     width: 500px;
-    height: 200px;
+
+ /*  height: 200px;*/
 }
 .msgbox {
     display: none;
@@ -49,7 +53,7 @@ body {
 }
 .room1 {
     width: 70%;
-    height: 450px;
+
     border-radius: 4px;
     margin-left: 13%;
 
@@ -102,12 +106,14 @@ li {
 .notactive {
     display: none;
 }
- #yum {
-    display: none;
-}
+
  #yum2 {
     display: none;
 }
 #yum3 {
     display: none;
+}
+
+.active {
+  display: block;
 }
